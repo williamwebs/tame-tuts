@@ -13,14 +13,21 @@
 body {
   font-family: "Inter", sans-serif;
   line-height: 1;
+}
+
+.table-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  padding: 50px 20px 10px;
 }
-
+.table-responsive{
+  overflow-x: auto;
+}
 table {
-  width: 800px;
-  margin-top: 100px;
+  width: 100%;
+  max-width: 800px;
   border-collapse: collapse;
 }
 
@@ -43,4 +50,11 @@ tbody tr:nth-child(odd) {
 
 tbody tr:nth-child(even) {
     background-color: #e9ecef;
+}
+
+@media (max-width: 768px) {
+  table,
+  .table-responsive {
+    display: block;
+  }
 }

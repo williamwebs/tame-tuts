@@ -1,3 +1,11 @@
+:root{
+  --main-green: #087f5b;
+  --main-grey: #868e96;
+  --main-dark: #2c3031;
+  --transition: all ease-in 0.1s;
+  --box-shadow: rgba(0, 0, 0, 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,65 +17,105 @@ body {
   line-height: 1;
 }
 
+/* accordion start */
 .accordion {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: 100px auto;
 }
+
 .item {
-  box-shadow: 0 0 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: block;
   padding: 24px;
+  margin: 12px 0;
+  border-radius: 4px;
+  box-shadow: 0 0 32px var(--box-shadow);
+  transition: var(--transition);
+}
+
+.item_head{
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto;
   column-gap: 24px;
   row-gap: 32px;
-  border-radius: 4px;
-  margin: 12px 0;
-}
-
-.number,
-.question {
+  cursor: pointer;
   font-size: 24px;
   font-weight: 500;
-  color: #868e96;
+  color: var(--main-grey);
 }
 
-.question {
-    color: #2c3031;
+.item_head .question {
+  color: var(--main-dark);
 }
 
-.icon {
+.item_head .icon, 
+.item_head svg {
   width: 24px;
+  color: var(--main-dark);
   aspect-ratio: 1/1;
-  color: #087f5b;
-  float: right;
 }
 
-.hidden__box {
-  grid-column: 2;
+/* 
+An exception instead of float: right;
+.item_head .icon, 
+.item_head svg {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 24px;
+  color: var(--main-dark);
+  aspect-ratio: 1/1;
+} */
+
+.item_body {
   display: none;
+  grid-column: 2;
+  padding: 30px 0 10px;
 }
 
-.hidden__box p {
+.item_body p {
   line-height: 1.6;
   margin-bottom: 24px;
 }
 
-.hidden__box ul {
-  color: #868e96;
+.item_body ul {
+  color: var(--main-grey);
   margin-left: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-.open .hidden__box {
+.item.open {
+  border-top: 4px solid var(--main-green);
+}
+.item.open .item_head svg, 
+.item.open .item_head .icon {
+  color: var(--main-green);
+  transform: rotate(180deg);
+}
+.open
+.item_body {
   display: block;
 }
-
-.item.open {
-  border-top: 4px solid #087f5b;
+.open .number, 
+.open .question {
+    color: var(--main-green);
 }
 
-.open .number, .open .question {
-    color: #087f5b;
+@media(max-width: 768px) {
+  .accordion{
+    padding: 10px 20px;
+  }
+  .item_head{
+    font-size: 18px;
+  }
+  .item_head .icon, 
+  .item_head svg {
+    width: 18px;
+  }
 }
+/* accordion end */
